@@ -1,0 +1,13 @@
+= SpringBatch + Kotlin + Arrow
+
+.build
+----
+$ make build
+----
+
+.ktlintFormatするまで
+----
+$ make bash
+コンテナの中で
+$ gradle ktlintFormat
+----

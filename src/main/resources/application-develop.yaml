@@ -1,0 +1,4 @@
+---
+slack:
+  main_notification:
+    webhook-url: "dummy-develop-webhook-url"

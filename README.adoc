@@ -8,6 +8,11 @@ $ make build
 .ktlintFormatするまで
 ----
 $ make bash
-コンテナの中で
 $ gradle ktlintFormat
+----
+
+.実行
+----
+$ make bash
+$ gradle bootRun
 ----

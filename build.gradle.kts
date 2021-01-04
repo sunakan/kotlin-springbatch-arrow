@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("org.springframework.boot") version "2.4.1"
@@ -28,11 +29,15 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")
-    // 自分で入れる
+
+    // jackson(自分で入れる)
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    // junit(自分で入れる)
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    // インメモリDB(自分で入れる)
+    implementation("org.hsqldb:hsqldb")
 }
 
 // 自分で入れる
@@ -45,6 +50,14 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
     }
+}
+
+//------------------------------------------------------------------------------
+// bootRun時のデフォルトのプロファイルを設定
+// $ gradle bootRun
+//------------------------------------------------------------------------------
+tasks.withType<BootRun> {
+    args("--spring.profiles.active=develop")
 }
 
 tasks.withType<Test> {

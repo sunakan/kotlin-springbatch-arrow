@@ -16,3 +16,9 @@ $ gradle ktlintFormat
 $ make bash
 $ gradle bootRun
 ----
+
+.テスト
+----
+$ make bash
+$ gradle test
+----

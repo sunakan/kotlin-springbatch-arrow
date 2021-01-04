@@ -1,11 +1,16 @@
+//import org.gradle.internal.deprecation.DeprecatableConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+//import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 import org.springframework.boot.gradle.tasks.run.BootRun
 
+
 plugins {
+    val kotlinVersion = "1.4.21"
     id("org.springframework.boot") version "2.4.1"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
-    kotlin("jvm") version "1.4.21"
-    kotlin("plugin.spring") version "1.4.21"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    //kotlin("kapt") version kotlinVersion
 
     // -----------------------------------------------------------------------------
     // 参考：https://plugins.gradle.org/plugin/org.jlleitschuh.gradle.ktlint
@@ -38,6 +43,9 @@ dependencies {
     }
     // インメモリDB(自分で入れる)
     implementation("org.hsqldb:hsqldb")
+    // SpringBoot + KotlinでメタデータをIDEに認識させるために必要
+    // https://spring.pleiades.io/guides/tutorials/spring-boot-kotlin/
+    //kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 // 自分で入れる
@@ -63,6 +71,16 @@ tasks.withType<BootRun> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+//-------------------------------------------------------------------------------
+//
+//-------------------------------------------------------------------------------
+//fun Configuration.isDeprecated(): Boolean =
+//    if (this is DeprecatableConfiguration) {
+//        resolutionAlternatives != null
+//    } else {
+//        false
+//    }
 
 // ------------------------------------------------------------------------------
 // 依存解決

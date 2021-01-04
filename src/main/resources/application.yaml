@@ -1,4 +1,6 @@
 ---
+slack:
+  url: "dummy-develop-webhook-url application.yaml"
 spring:
   profiles:
     active: default
